@@ -1,0 +1,49 @@
+<div class="example-container mat-elevation-z8">
+  <h2>Sales List</h2>
+  <div class="example-loading-shade"
+       *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/add-sales']"><mat-icon>add</mat-icon> Sales</a>
+  </div>
+  <div class="top-charts">
+    <div class="chart">
+      <canvas baseChart
+        [data]="pieChartData"
+        [labels]="pieChartLabels"
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [colors]="pieChartColors"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
+  </div>
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="data" class="example-table"
+           matSort matSortActive="itemName" matSortDisableClear matSortDirection="asc">
+
+      <!-- Item ID Column -->
+      <ng-container matColumnDef="itemId">
+        <th mat-header-cell *matHeaderCellDef>Item ID</th>
+        <td mat-cell *matCellDef="let row">{{row.itemId}}</td>
+      </ng-container>
+
+      <!-- Item Name Column -->
+      <ng-container matColumnDef="itemName">
+        <th mat-header-cell *matHeaderCellDef>Item Name</th>
+        <td mat-cell *matCellDef="let row">{{row.itemName}}</td>
+      </ng-container>
+
+      <!-- Total Price Column -->
+      <ng-container matColumnDef="totalPrice">
+        <th mat-header-cell *matHeaderCellDef>Total Price</th>
+        <td mat-cell *matCellDef="let row">{{row.totalPrice}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" [routerLink]="['/sales-details/', row._id]"></tr>
+    </table>
+  </div>
+</div>

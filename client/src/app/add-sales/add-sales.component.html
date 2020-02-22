@@ -1,0 +1,57 @@
+<div class="example-container mat-elevation-z8">
+  <h2>Add Sales</h2>
+  <div class="example-loading-shade"
+        *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/']"><mat-icon>list</mat-icon></a>
+  </div>
+  <mat-card class="example-card">
+    <form [formGroup]="salesForm" (ngSubmit)="onFormSubmit()">
+      <mat-form-field class="example-full-width">
+        <mat-label>Item ID</mat-label>
+        <input matInput placeholder="Item ID" formControlName="itemId"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!salesForm.get('itemId').valid && salesForm.get('itemId').touched">Please enter Item ID</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Item Name</mat-label>
+        <input matInput placeholder="Item Name" formControlName="itemName"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!salesForm.get('itemName').valid && salesForm.get('itemName').touched">Please enter Item Name</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Item Price</mat-label>
+        <input matInput type="number" placeholder="Item Price" formControlName="itemPrice"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!salesForm.get('itemPrice').valid && salesForm.get('itemPrice').touched">Please enter Item Price</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Item Qty</mat-label>
+        <input matInput type="number" placeholder="Item Qty" formControlName="itemQty"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!salesForm.get('itemQty').valid && salesForm.get('itemQty').touched">Please enter Item Qty</span>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <mat-label>Total Price</mat-label>
+        <input matInput type="number" placeholder="Total Price" formControlName="totalPrice"
+                [errorStateMatcher]="matcher">
+        <mat-error>
+          <span *ngIf="!salesForm.get('totalPrice').valid && salesForm.get('totalPrice').touched">Please enter Total Price</span>
+        </mat-error>
+      </mat-form-field>
+      <div class="button-row">
+        <button type="submit" [disabled]="!salesForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+      </div>
+    </form>
+  </mat-card>
+</div>
